@@ -7,18 +7,20 @@
 
   </head>
   <body>
-
       <div id='app' class="center container">
 
         <div id='headers'>
           <h1 id='title'>Guessing Game!</h1>
-          <h2 id='subtitle'> You almost for sure will never ever ever guess the number.<br>But I guess you can try anyway.</h2>
+          <h2 id='subtitle'> You got no chance!<br>But I guess you can try anyway.</h2>
         </div>
 
         <div id='main'>
           <div class="center" id='input-parent'>
             <!-- Player's guess input, and submit button -->
-            <input class="center input" id='player-input' placeholder="Pick a #1-100" maxlength='3' autofocus="autofocus">
+           
+              <input class="center input" id='player-input' placeholder="Pick a #1-500" maxlength='3' autofocus="autofocus" type="number">
+       
+            
             
             <button class="btn col-md-04 btn btn-success" id="submit-btn" name='submit'>Guess<br> Already!</button>
             
@@ -27,11 +29,11 @@
           <div id='guesses'>
             <!-- unordered list of guesses -->
             <ul class="row move">
-              <li class="guess"><div class="guessDiv">-</div></li>
-              <li class="guess"><div class="guessDiv">-</div></li>
-              <li class="guess"><div class="guessDiv">-</div></li>
-              <li class="guess"><div class="guessDiv">-</div></li>
-              <li class="guess"><div class="guessDiv">-</div></li>
+              <li class="guess"><div class="guessDiv" id="guess1"></div></li>
+              <li class="guess"><div class="guessDiv" id="guess2"></div></li>
+              <li class="guess"><div class="guessDiv" id="guess3"></div></li>
+              <li class="guess"><div class="guessDiv" id="guess4"></div></li>
+              <li class="guess"><div class="guessDiv" id="guess5"></div></li>
             </ul>
           </div>
 
@@ -62,7 +64,8 @@
         </div>
     </div>
 
-    
+    <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
+    <script src="GuessingGame-Part2/GuessingGame.js"></script>
 
   </body>
 </html>
