@@ -10,12 +10,16 @@
       <div id='app' class="center container">
 
         <div id='headers'>
-          <h1 id='title'>Guessing Game!</h1>
+          <h1 id='title'>? Guessing Game ¿</h1>
           <h2 id='subtitle'> You got no chance!<br>But I guess you can try anyway.</h2>
         </div>
 
         <div id='main'>
           <div class="center" id='input-parent'>
+            <div id="badInput">
+              <p>Invalid Input, dummy. <br> Try a #1-500</p>
+              <button id="tryAgain">Try Again!</button>
+            </div>
             <!-- Player's guess input, and submit button -->
            
               <input class="center input" id='player-input' placeholder="Pick a #1-500" maxlength='3' autofocus="autofocus" type="number">
@@ -44,7 +48,7 @@
           </div>
         </div>
       </div>
-
+     
 
 
   <div id='footer' class="center">
@@ -58,7 +62,7 @@
           </div>
 
           <div class='col-md-04'>
-            <img src='grace_hopper_academy.png'></img>
+            <img src='grace_hopper_academy.png' class="test"></img>
           </div>
 
         </div>

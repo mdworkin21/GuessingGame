@@ -40,6 +40,7 @@ function Game(){
  	this.playersGuess = null
  	this.pastGuesses = []
  	this.winningNumber = generateWinningNumber()
+
  }
 
 
@@ -73,7 +74,7 @@ Game.prototype.playersGuessSubmission = function(guess){
 Game.prototype.checkGuess = function() {
 
 	if (this.pastGuesses.indexOf(this.playersGuess) !== -1) {
-		return 'You already guessed that one dummy.'
+		return 'Already guessed that'
 
 	}
 
@@ -81,7 +82,7 @@ Game.prototype.checkGuess = function() {
 
 	if (this.winningNumber === this.playersGuess) {
 		$('#hint-btn').prop('disabled', true)
-		return 'You Win! I guess luck really is better than skill....'
+		return 'You Win!'
 	} else if (this.pastGuesses.length === 5) {
 		return 'You Lose.'
 	} else if (this.difference() <= 10) {
@@ -115,27 +116,43 @@ Game.prototype.provideHint = function(){
 
 
 Game.prototype.guessInput = function (game){
-	let playerInput = $('#player-input').val()
-	$('h1').text(game.playersGuessSubmission(parseInt(playerInput)))
+	let $playerInput = $('#player-input').val()
+	$('h1').text(game.playersGuessSubmission(parseInt($playerInput)))
 }
 
-Game.prototype.displayPastGuess = function (){
-	let playerInput = $('#player-input').val()
- 	
- 	 if (this.pastGuesses.length === 1){		
-	   $(`#guess1`).text((parseInt(playerInput)))
-	} else if (this.pastGuesses.length === 2){
-		$('#guess2').text((parseInt(playerInput)))
-	} else if (this.pastGuesses.length === 3){
-		$('#guess3').text((parseInt(playerInput)))
-	} else if (this.pastGuesses.length === 4){
-		$('#guess4').text((parseInt(playerInput)))
-	} else if (this.pastGuesses.length === 5){
-		$('#guess5').text((parseInt(playerInput)))
+Game.prototype.displayPastGuess = function() {
+    let $playerInput = $('#player-input').val()
+    let numGuess = this.pastGuesses.length
+    	let fire = $('.test')
+
+
+
+    $(`#guess` + `${numGuess}`).text((parseInt($playerInput))).css({
+    	'color': 'white',
+        'transition-duration': '5s',
+        'background-image': this.animateGuesses(),
+        'background-size': 'cover'
+    })
+
+
+    $('#player-input').val('')
+
+}
+
+Game.prototype.animateGuesses = function(){
+
+	
+	if (this.difference() <= 10) {
+		return 'url(https://media.giphy.com/media/6wpHEQNjkd74Q/giphy.gif)'
+	} else if (this.difference() < 25) {
+		return 'url(https://media.giphy.com/media/WgSPkvd0ZnsOC1I8Fb/giphy.gif)'
+	} else if (this.difference() < 50) {
+		return 'url(https://media.giphy.com/media/3o6gDRQTxuTBbXZrmo/giphy.gif)'
+	} else if (this.difference() < 100) {
+		return 'url(https://media.giphy.com/media/BDucPOizdZ5AI/giphy.gif)'
+	} else if (this.difference() > 100) {
+		return 'url(https://media.giphy.com/media/3ohzdPmHlaJlVPNxxS/giphy.gif)'
 	}
-
-		$('#player-input').val('')	
-
 }
 
 
@@ -152,8 +169,13 @@ $(document).ready(function(){
 	//Two events to trigger player submission
 	//(i) Click event
 	$('#submit-btn').on('click', function(){
-		game.guessInput(game);
-		game.displayPastGuess();
+		let $playerInput = $('#player-input').val()
+
+		if ($playerInput){
+			game.guessInput(game);
+			game.displayPastGuess();
+		} 
+		
 		
 	});
 
@@ -162,9 +184,6 @@ $(document).ready(function(){
 		if (e.which === 13){
 			game.guessInput(game);
 			game.displayPastGuess();
-
-
-			
 		}
 	})
 
@@ -183,4 +202,13 @@ $(document).ready(function(){
 
 
 
+
+
+
+
+
+//TODO
+
+//refactor
+//make title float up and down as a wave
 
