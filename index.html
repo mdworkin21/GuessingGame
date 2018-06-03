@@ -11,22 +11,26 @@
 
         <div id='headers'>
           <h1 id='title'>? Guessing Game ¿</h1>
-          <h2 id='subtitle'> You got no chance!<br>But I guess you can try anyway.</h2>
+          <h2 id='subtitle'> You got no chance!</h2>
         </div>
 
-        <div id='main'>
-          <div class="center" id='input-parent'>
-            <div id="badInput">
-              <p>Invalid Input, dummy. <br> Try a #1-500</p>
-              <button id="tryAgain">Try Again!</button>
-            </div>
-            <!-- Player's guess input, and submit button -->
+           <div id="inputParent">
+              <input class="center input" id='player-input' placeholder="Guess!! Guess!! Guess!!" maxlength='3' autofocus="autofocus" type="number">
+
            
-              <input class="center input" id='player-input' placeholder="Pick a #1-500" maxlength='3' autofocus="autofocus" type="number">
-       
-            
-            
+
+            <button class="btn col-md-04 btn btn-success" id="reset-btn" name='reset'>Reset</button>
             <button class="btn col-md-04 btn btn-success" id="submit-btn" name='submit'>Guess<br> Already!</button>
+            <button class="btn col-md-04 btn btn-success" id="hint-btn" name='hint'>Hint</button>
+
+            <p id="tagLine"><strong>Pick a #1-500</strong></p>
+
+           </div>
+              
+       
+      
+            
+           
             
           </div>
 
@@ -41,14 +45,9 @@
             </ul>
           </div>
 
-          <div class="row" id="menu-btns">
-            <!-- reset and hint buttons -->
-            <button class="btn col-md-04 btn btn-success" id="reset-btn" name='reset'>Reset</button>
-            <button class="btn col-md-04 btn btn-success" id="hint-btn" name='hint'>Hint</button>
-          </div>
+          
         </div>
-      </div>
-     
+      </div>  
 
 
   <div id='footer' class="center">
