@@ -75,13 +75,24 @@ Game.prototype.checkGuess = function() {
 
 	if (this.pastGuesses.indexOf(this.playersGuess) !== -1) {
 		return 'Already guessed that'
+	} else {
+		this.pastGuesses.push(this.playersGuess)
 
-	}
-
-	this.pastGuesses.push(this.playersGuess)
-
+		$('h2').text('Nope!')
 	if (this.winningNumber === this.playersGuess) {
-		$('#hint-btn').prop('disabled', true)
+		$('#hint-btn').prop('disabled', true).css({
+				'background-color':  "#A5F2F3"
+			})
+		$('#submit-btn').prop('disabled', true).css({
+				'background-color':  "#A5F2F3"
+			})
+
+		$('#player-input').off('keydown')
+		
+	    $('h2').text('Guess I was wrong, play again?')
+
+
+	
 		return 'You Win!'
 	} else if (this.pastGuesses.length === 5) {
 		return 'You Lose.'
@@ -97,6 +108,9 @@ Game.prototype.checkGuess = function() {
 		return 'Not even close!'
 	}
 
+	}
+
+	
 }
 
 Game.prototype.provideHint = function(){
@@ -118,21 +132,22 @@ Game.prototype.provideHint = function(){
 Game.prototype.guessInput = function (game){
 	let $playerInput = $('#player-input').val()
 	$('h1').text(game.playersGuessSubmission(parseInt($playerInput)))
+
+	
 }
 
 Game.prototype.displayPastGuess = function() {
     let $playerInput = $('#player-input').val()
     let numGuess = this.pastGuesses.length
-    	let fire = $('.test')
-
-
-
-    $(`#guess` + `${numGuess}`).text((parseInt($playerInput))).css({
+  
+  $(`#guess` + `${numGuess}`).text((parseInt($playerInput))).css({
     	'color': 'white',
         'transition-duration': '5s',
         'background-image': this.animateGuesses(),
         'background-size': 'cover'
     })
+
+  
 
 
     $('#player-input').val('')
@@ -141,8 +156,9 @@ Game.prototype.displayPastGuess = function() {
 
 Game.prototype.animateGuesses = function(){
 
-	
-	if (this.difference() <= 10) {
+	if (this.difference() === 0){
+		return 'url(https://media.giphy.com/media/26tOZ42Mg6pbTUPHW/giphy.gif)'
+	} else if (this.difference() <= 10 && this.difference() > 0) {
 		return 'url(https://media.giphy.com/media/6wpHEQNjkd74Q/giphy.gif)'
 	} else if (this.difference() < 25) {
 		return 'url(https://media.giphy.com/media/WgSPkvd0ZnsOC1I8Fb/giphy.gif)'
